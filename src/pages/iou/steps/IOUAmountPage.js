@@ -86,11 +86,11 @@ class IOUAmountPage extends React.Component {
     }
 
     componentDidUpdate(prevProps) {
+        this.focusTextInput();
+        
         if (this.props.iou.selectedCurrencyCode === prevProps.iou.selectedCurrencyCode) {
             return;
         }
-
-        this.focusTextInput();
     }
 
     /**
