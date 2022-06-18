@@ -94,6 +94,7 @@ class EmojiPickerMenu extends Component {
             headerIndices: this.unfilteredHeaderIndices,
             highlightedIndex: -1,
             arePointerEventsDisabled: false,
+            highlightComposer: false,
             selection: {
                 start: 0,
                 end: 0,
@@ -439,7 +440,9 @@ class EmojiPickerMenu extends Component {
                             placeholder={this.props.translate('common.search')}
                             placeholderTextColor={themeColors.textSupporting}
                             onChangeText={this.filterEmojis}
-                            style={styles.textInput}
+                            onFocus={() => this.setState({highlightComposer: true})}
+                            onBlur={() => this.setState({highlightComposer: false})}
+                            style={[styles.textInput, this.state.highlightComposer && styles.borderColorFocus]}
                             defaultValue=""
                             ref={el => this.searchInput = el}
                             autoFocus
