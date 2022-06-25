@@ -46,6 +46,8 @@ import toggleReportActionComposeView from '../../../libs/toggleReportActionCompo
 import OfflineIndicator from '../../../components/OfflineIndicator';
 import ExceededCommentLength from '../../../components/ExceededCommentLength';
 
+import iosBottomSpaceFix from '../../../libs/iosBottomSpaceFix';
+
 const propTypes = {
     /** Beta features list */
     betas: PropTypes.arrayOf(PropTypes.string).isRequired,
@@ -160,6 +162,8 @@ class ReportActionCompose extends React.Component {
         });
         this.setMaxLines();
         this.updateComment(this.comment);
+
+        iosBottomSpaceFix.register();
     }
 
     componentDidUpdate(prevProps) {
@@ -191,6 +195,7 @@ class ReportActionCompose extends React.Component {
 
     componentWillUnmount() {
         ReportActionComposeFocusManager.clear();
+        iosBottomSpaceFix.unregister();
     }
 
     onSelectionChange(e) {
